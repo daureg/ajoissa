@@ -63,7 +63,7 @@ def read_entry(e, day, month):
     res['start'] = tz.localize(start, is_dst=True).astimezone(pytz.utc)
     res['s_offset'] = int(tz.utcoffset(start, is_dst=True).total_seconds())
     hour, mins = map(int, e.find(class_='timeSpan2').text.strip().split(':'))
-    if hour < res['start'].hour:
+    if hour < start.hour:
         day += 1
     naive_end = datetime.datetime(YEAR, month, day, hour, mins)
     res['end'] = tz.localize(naive_end, is_dst=True).astimezone(pytz.utc)
