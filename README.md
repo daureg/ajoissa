@@ -2,7 +2,11 @@ Time tracking scripts in python.
 
 # Dependencies
 
-- Maybe at some point: [tzlocal](https://github.com/regebro/tzlocal)
+- [pytz](http://pytz.sourceforge.net/)
+
+- [tzlocal](https://github.com/regebro/tzlocal)
+
+- [dateutil](http://labix.org/python-dateutil)
 
 # What about the name
 

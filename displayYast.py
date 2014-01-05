@@ -5,6 +5,13 @@ from datetime import datetime, timedelta
 from itertools import groupby
 
 
+def get_project_list(conn=None):
+    if conn is None:
+        conn = sqlite3.connect('yast.db')
+    c = conn.cursor()
+    return {id_: name for id_, name in c.execute('select * from project')}
+
+
 def format_entry(e):
     res = {}
     res['project'] = e['project']
@@ -22,7 +29,7 @@ if __name__ == '__main__':
     conn = sqlite3.connect('yast.db')
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
-    projects = {id_: name for id_, name in c.execute('select * from project')}
+    projects = get_project_list()
     entries = []
     for e in list(c.execute('select * from entry order by start_time')):
         entries.append(format_entry(e))
